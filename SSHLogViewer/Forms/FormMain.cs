@@ -24,7 +24,8 @@ namespace SSHLogViewer {
 
             ConnectionTabs = new List<ConnectionTab>();
             
-            BuildMenu();
+            BuildConnectionMenu();
+            BuildCommandMenu();
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e) {
@@ -40,14 +41,14 @@ namespace SSHLogViewer {
                 Settings.Default.Connections.Add(frm.Connection);
                 Settings.Default.Connections.Sort();
                 Settings.Default.Save();
-                BuildMenu();
+                BuildConnectionMenu();
 
                 Connect(frm.Connection.ConnectionName);
             }
                 
         }
 
-        private void BuildMenu() {
+        private void BuildConnectionMenu() {
             if (Settings.Default.Connections != null) {
                 ToolStripMenuItem mnu = (ToolStripMenuItem)menuStripMain.Items.Find("connectToolStripMenuItem", true)[0];
                 mnu.DropDownItems.Clear();
@@ -69,6 +70,27 @@ namespace SSHLogViewer {
             }
         }
 
+        private void BuildCommandMenu() {
+            if (Settings.Default.Commands != null) {
+                ToolStripMenuItem mnu = (ToolStripMenuItem)menuStripMain.Items.Find("executeCommandToolStripMenuItem", true)[0];
+                mnu.DropDownItems.Clear();
+                foreach (var com in Settings.Default.Commands) {
+                    if (mnu.DropDownItems.Find(com, false).Count() == 0) {
+                        ToolStripMenuItem itm = new ToolStripMenuItem(com);
+                        
+                        itm.Click += CommandMenuItem_Click;
+
+                        mnu.DropDownItems.Add(itm);
+                    }
+                }
+            }
+        }
+
+        private void CommandMenuItem_Click(object sender, EventArgs e) {
+            ToolStripMenuItem itm = (ToolStripMenuItem)sender;
+            ExecuteCommand(itm.Text);
+        }
+
         private void ConnectionMenuItemDelete_Click(object sender, EventArgs e) {
             ToolStripMenuItem itm = (ToolStripMenuItem)sender;
             foreach (var con in Settings.Default.Connections) {
@@ -78,7 +100,7 @@ namespace SSHLogViewer {
                 }
             }
             Settings.Default.Save();
-            BuildMenu();
+            BuildConnectionMenu();
         }
 
         private void ConnectionMenuItem_Click(object sender, EventArgs e) {
@@ -119,7 +141,7 @@ namespace SSHLogViewer {
             ConnectionTab tab = CreateTab(String.Format("{0} - {1}", con.ConnectionName, con.Host), ssh);
 
             //commandString = "tail -f /apps/jboss/wildfly/standalone/log/server.log";
-            tab.Connection.ExecuteCommand("tail -f -n 100 /apps/jboss/wildfly/standalone/log/server.log");
+            //tab.Connection.ExecuteCommand("tail -f -n 100 /apps/jboss/wildfly/standalone/log/server.log");
 
             this.ResumeLayout();
             this.Cursor = Cursors.Default;
@@ -162,7 +184,12 @@ namespace SSHLogViewer {
 
         private void commandsToolStripMenuItemSub_Click(object sender, EventArgs e) {
             FormCommands frm = new FormCommands();
-            frm.ShowDialog();
+            if(frm.ShowDialog() == DialogResult.OK) {
+                Settings.Default.Commands = frm.Commands;
+                Settings.Default.Save();
+
+                BuildCommandMenu();
+            }
         }
 
         private void stopCommandToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -172,8 +199,12 @@ namespace SSHLogViewer {
         private void adHocCommandToolStripMenuItem_Click(object sender, EventArgs e) {
             FormCommandText frm = new FormCommandText();
             if(frm.ShowDialog() == DialogResult.OK) {
-                ConnectionTabs[TabControlConnections.SelectedIndex].Connection.ExecuteCommand(frm.CommandText);
+                ExecuteCommand(frm.CommandText);
             }
+        }
+
+        private void ExecuteCommand(string commandText) {
+            ConnectionTabs[TabControlConnections.SelectedIndex].Connection.ExecuteCommand(commandText);
         }
 
         private void startJBossToolStripMenuItem_Click(object sender, EventArgs e) {

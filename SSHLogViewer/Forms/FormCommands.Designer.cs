@@ -92,6 +92,7 @@
             this.buttonOk.TabIndex = 5;
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
+            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // FormCommands
             // 
@@ -107,6 +108,7 @@
             this.Name = "FormCommands";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Commands";
+            this.Load += new System.EventHandler(this.FormCommands_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

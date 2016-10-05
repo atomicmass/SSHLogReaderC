@@ -72,6 +72,18 @@ namespace SSHLogViewer {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Git\\bin\\sh.exe")]
+        public string JBossCommand {
+            get {
+                return ((string)(this["JBossCommand"]));
+            }
+            set {
+                this["JBossCommand"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public global::SSHLogViewer.ConnectionInfoCollection Connections {
             get {
                 return ((global::SSHLogViewer.ConnectionInfoCollection)(this["Connections"]));
@@ -83,25 +95,14 @@ namespace SSHLogViewer {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("--login -i -c /D/Server/wildfly-8.1.0.Final2/bin/standalone.sh")]
+        [global::System.Configuration.DefaultSettingValueAttribute("--login -i -c \"tail -f -n500 /D/Server/wildfly-8.1.0.Final2/standalone/log/server" +
+            ".log\"")]
         public string JBossCommandArguments {
             get {
                 return ((string)(this["JBossCommandArguments"]));
             }
             set {
                 this["JBossCommandArguments"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Git\\bin\\sh.exe")]
-        public string JBossCommand {
-            get {
-                return ((string)(this["JBossCommand"]));
-            }
-            set {
-                this["JBossCommand"] = value;
             }
         }
     }
