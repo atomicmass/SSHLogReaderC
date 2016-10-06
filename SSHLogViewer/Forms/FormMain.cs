@@ -11,6 +11,7 @@ namespace SSHLogViewer {
         private List<ConnectionTab> ConnectionTabs;
         private String Password;
         private LocalCommand JBossCommand;
+        private LocalCommand LocalTerminalCommand;
 
         public FormMain() {
             InitializeComponent();
@@ -232,6 +233,27 @@ namespace SSHLogViewer {
                 JBossCommand.TerminateCommand();
                 JBossCommand = null;
             }
+        }
+
+        private void localTerminalToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (JBossCommand != null) {
+                MessageBox.Show("local terminal already active!");
+                return;
+            }
+
+            this.Cursor = Cursors.WaitCursor;
+
+            LocalTerminalCommand = new LocalCommand();
+
+            this.SuspendLayout();
+            ConnectionTab tab = CreateTab("Local Terminal", LocalTerminalCommand);
+
+            LocalTerminalCommand.ExecuteCommand(Settings.Default.LocalTerminal);
+
+            this.ResumeLayout();
+            this.Cursor = Cursors.Default;
+
+            LocalTerminalCommand.SendCommand("ls");
         }
     }
 }

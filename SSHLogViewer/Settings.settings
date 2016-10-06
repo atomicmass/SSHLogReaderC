@@ -8,20 +8,23 @@
     <Setting Name="UserName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="JBossTerminate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\Server\wildfly-8.1.0.Final2\bin\jboss-cli.bat</Value>
-    </Setting>
     <Setting Name="JBossTerminateArguments" Type="System.String" Scope="User">
       <Value Profile="(Default)">--connect command=:shutdown</Value>
     </Setting>
-    <Setting Name="JBossCommand" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Program Files (x86)\Git\bin\sh.exe</Value>
+    <Setting Name="JBossCommandArguments" Type="System.String" Scope="User">
+      <Value Profile="(Default)">--login -i -c "tail -f -n500 /D/Server/wildfly-8.1.0.Final2/standalone/log/server.log"</Value>
+    </Setting>
+    <Setting Name="JBossTerminate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\\Server\\wildfly-8.1.0.Final2\\bin\\jboss-cli.bat</Value>
     </Setting>
     <Setting Name="Connections" Type="SSHLogViewer.ConnectionInfoCollection" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="JBossCommandArguments" Type="System.String" Scope="User">
-      <Value Profile="(Default)">--login -i -c "tail -f -n500 /D/Server/wildfly-8.1.0.Final2/standalone/log/server.log"</Value>
+    <Setting Name="JBossCommand" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\\Program Files (x86)\\Git\\bin\\sh.exe</Value>
+    </Setting>
+    <Setting Name="LocalTerminal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\\Program Files (x86)\\Git\\bin\\sh.exe</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -22,6 +22,7 @@ namespace SSHLogViewer.Classes {
             // *** Redirect the output ***
             processInfo.RedirectStandardError = true;
             processInfo.RedirectStandardOutput = true;
+            processInfo.RedirectStandardInput = true;
 
             process = Process.Start(processInfo);
 
@@ -36,6 +37,12 @@ namespace SSHLogViewer.Classes {
         public async void WatchNextStandardStream() {
             if (process != null && !process.HasExited)
                 await ReadStream(process.StandardOutput.BaseStream);
+        }
+
+        public void SendCommand(String command) {
+            if(process != null) {
+                process.StandardInput.WriteLine(command);
+            }
         }
 
         public override void TerminateCommand() {

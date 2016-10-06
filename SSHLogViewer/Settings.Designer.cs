@@ -48,18 +48,6 @@ namespace SSHLogViewer {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Server\\wildfly-8.1.0.Final2\\bin\\jboss-cli.bat")]
-        public string JBossTerminate {
-            get {
-                return ((string)(this["JBossTerminate"]));
-            }
-            set {
-                this["JBossTerminate"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("--connect command=:shutdown")]
         public string JBossTerminateArguments {
             get {
@@ -72,13 +60,26 @@ namespace SSHLogViewer {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Git\\bin\\sh.exe")]
-        public string JBossCommand {
+        [global::System.Configuration.DefaultSettingValueAttribute("--login -i -c \"tail -f -n500 /D/Server/wildfly-8.1.0.Final2/standalone/log/server" +
+            ".log\"")]
+        public string JBossCommandArguments {
             get {
-                return ((string)(this["JBossCommand"]));
+                return ((string)(this["JBossCommandArguments"]));
             }
             set {
-                this["JBossCommand"] = value;
+                this["JBossCommandArguments"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\\\Server\\\\wildfly-8.1.0.Final2\\\\bin\\\\jboss-cli.bat")]
+        public string JBossTerminate {
+            get {
+                return ((string)(this["JBossTerminate"]));
+            }
+            set {
+                this["JBossTerminate"] = value;
             }
         }
         
@@ -95,14 +96,25 @@ namespace SSHLogViewer {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("--login -i -c \"tail -f -n500 /D/Server/wildfly-8.1.0.Final2/standalone/log/server" +
-            ".log\"")]
-        public string JBossCommandArguments {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Program Files (x86)\\\\Git\\\\bin\\\\sh.exe")]
+        public string JBossCommand {
             get {
-                return ((string)(this["JBossCommandArguments"]));
+                return ((string)(this["JBossCommand"]));
             }
             set {
-                this["JBossCommandArguments"] = value;
+                this["JBossCommand"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Program Files (x86)\\\\Git\\\\bin\\\\sh.exe")]
+        public string LocalTerminal {
+            get {
+                return ((string)(this["LocalTerminal"]));
+            }
+            set {
+                this["LocalTerminal"] = value;
             }
         }
     }

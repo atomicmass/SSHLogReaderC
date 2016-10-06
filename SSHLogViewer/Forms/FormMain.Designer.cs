@@ -43,6 +43,7 @@
             this.localToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startJBossToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopJBossToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.localTerminalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -147,7 +148,8 @@
             // 
             this.localToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startJBossToolStripMenuItem,
-            this.stopJBossToolStripMenuItem});
+            this.stopJBossToolStripMenuItem,
+            this.localTerminalToolStripMenuItem});
             this.localToolStripMenuItem.Name = "localToolStripMenuItem";
             this.localToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.localToolStripMenuItem.Text = "&Local";
@@ -165,6 +167,13 @@
             this.stopJBossToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.stopJBossToolStripMenuItem.Text = "&Stop JBoss";
             this.stopJBossToolStripMenuItem.Click += new System.EventHandler(this.stopJBossToolStripMenuItem_Click);
+            // 
+            // localTerminalToolStripMenuItem
+            // 
+            this.localTerminalToolStripMenuItem.Name = "localTerminalToolStripMenuItem";
+            this.localTerminalToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.localTerminalToolStripMenuItem.Text = "Local &Terminal";
+            this.localTerminalToolStripMenuItem.Click += new System.EventHandler(this.localTerminalToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -201,6 +210,7 @@
         private System.Windows.Forms.ToolStripMenuItem localToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startJBossToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stopJBossToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem localTerminalToolStripMenuItem;
     }
 }
 
